@@ -1,63 +1,63 @@
-# [HTML5 Boilerplate](http://html5boilerplate.com)
+# [Off-line Google Maps concept]
 
-HTML5 Boilerplate is a professional front-end template for building fast,
-robust, and adaptable web apps or sites.
+This concept is developed throughout a night at the Googel Campus in Mountain View.
+On the night of Oct 20 to Oct 21, 2012. It was the Google DevFest West event.
 
-This project is the product of many years of iterative development and combined
-community knowledge. It does not impose a specific development philosophy or
-framework, so you're free to architect your code in the way that you want.
+## The original problem
+* Scientist go out to remote field trips where there's no internet
+* Their tablet device may have GPS though
+* They want to download some image tiles about certain areas therefore
+* They could use those off-line images on the field
+* I wanted to create something multi-platform, not ruling out any iOS or Android or other device
 
-* Source: [https://github.com/h5bp/html5-boilerplate](https://github.com/h5bp/html5-boilerplate)
-* Homepage: [http://html5boilerplate.com](http://html5boilerplate.com)
-* Twitter: [@h5bp](http://twitter.com/h5bp)
+## Imagined workflow
+* During load GPS position can be sensed and the map can automatically focuses there
+* The scientist double clicks at the designated area, one pin is dropped there and GPS coordinates are loaded
+* Scientist clicks on "Store tiles" button -> image tiles should be stored for that area
+* When the scientist clicks "Offline mode" checkbox, the application displays the downloaded tiles
 
+## Challenges
+* How to download data and from where?
+* Where and how to store them platform independently?
+* How to display them?
 
-## Quick start
+## This particular solution features
+* Based on [HTML5 Boilerplate](http://html5boilerplate.com)
+* I used Aptana Studio 3 for HTML5/CSS/JS editing (I tried Eclipse and Netbeans and both sucked at JavaScript)
+* HTML5/CSS3/JavaScript _theoretically_ provides platform independence
+* IndexDB is used for storage of image tiles
+* IDBStore wrapper JS library is used to make that less cumbersome
+* jQuery UI Map is used as an extra layer over Google Maps v3 API
+* Google static maps used for downloading image tiles
+* Google Maps overlay layer for displaying the off-line tiles
+* There is underscore.js and bakcbone.js included too, but I didn't have time to implement real UI because of the quirks (ecplained later)
 
-Choose one of the following options:
+## Implementation limitations, experiences
+* Tried Firefox and Chrome, and developed under 12.04 Ubuntu desktop OS
+* The IndexDB was very unreliable. Just try the IDBStore.js basic test! If the browser (both browsers) has good mood it works, if not then it doesn't...
+* The Google tatic map doesn't work reliably.
+** Chrome explicitely denies to download saying origin of reference error
+** Firefox sometimes work, sometimes (mostly?) not
+** Only try to download the default 256x256px dimesnions otherwise 100% Google won't reply
+** Different zoom levels, and the two scale levels (1 and 2) works also
+* Since the two basic functionality didn't work (took most of my night), I used a pre-staged situation at the demo:
+** I manually downloaded tiles for a specific location
+** I didn't store them in IndexDB but loaded them from the image/precache folder
+* I only stored photos for one zoom level
+* I only stored one tile per spot (in a real life app I'd store a whole area around a spot and several zoom levels)
+* I managed to get Google Maps overlay layer to work
 
-1. Download the latest stable release from
-   [html5boilerplate.com](http://html5boilerplate.com/) or a custom build from
-   [Initializr](http://www.initializr.com).
-2. Clone the git repo — `git clone
-   https://github.com/h5bp/html5-boilerplate.git` - and checkout the tagged
-   release you'd like to use.
+## Missing features
+* Store bigger area and more zoom levels
+* Get non-working parts to work
+** For the static map we'd need to modify the AJAX request's Referer and Origin HTTP headers but at this level that doesn't seem to be possible
+** For IndexDB some magic needed also
+* Storing tiles for more spots, displaying a list of those spots for the user and he/she can slect from them
 
+## Implementation alternatives
+* Use File Storage for tile storage, but that's only available in Chrome/Chromium right now
+* Use other technology stack than HTML5/CSS/JS
+* Use some satellite image providers, is there any free available?
 
-## Features
-
-* HTML5 ready. Use the new elements with confidence.
-* Cross-browser compatible (Chrome, Opera, Safari, Firefox 3.6+, IE6+).
-* Designed with progressive enhancement in mind.
-* Includes [Normalize.css](http://necolas.github.com/normalize.css/) for CSS
-  normalizations and common bug fixes.
-* The latest [jQuery](http://jquery.com/) via CDN, with a local fallback.
-* The latest [Modernizr](http://modernizr.com/) build for feature detection.
-* IE-specific classes for easier cross-browser control.
-* Placeholder CSS Media Queries.
-* Useful CSS helpers.
-* Default print CSS, performance optimized.
-* Protection against any stray `console.log` causing JavaScript errors in
-  IE6/7.
-* An optimized Google Analytics snippet.
-* Apache server caching, compression, and other configuration defaults for
-  Grade-A performance.
-* Cross-domain Ajax and Flash.
-* "Delete-key friendly." Easy to strip out parts you don't need.
-* Extensive inline and accompanying documentation.
-
-
-## Documentation
-
-Take a look at the [documentation table of
-contents](/h5bp/html5-boilerplate/blob/master/doc/TOC.md). This
-documentation is bundled with the project, which makes it readily available for
-offline reading and provides a useful starting point for any documentation
-you want to write about your project.
-
-
-## Contributing
-
-Anyone and everyone is welcome to
-[contribute](/h5bp/html5-boilerplate/blob/master/CONTRIBUTING.md). Hundreds
-of developers have helped make the HTML5 Boilerplate what it is today.
+## Plans
+* Use Triple play (GWT, PlayN based) framework to develop an alternative
