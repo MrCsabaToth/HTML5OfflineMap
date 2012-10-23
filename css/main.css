@@ -18,10 +18,18 @@ textarea {
     color: #222;
 }
 
+html { height: 100% }
+
 body {
     font-size: 1em;
     line-height: 1.4;
+/* full screen canvas */
+    height: 100%;
+    margin: 0;
+    padding: 0;
 }
+
+#map_canvas { height: 100% }
 
 /*
  * Remove text-shadow in selection highlight: h5bp.com/i
@@ -296,3 +304,8 @@ textarea {
         page-break-after: avoid;
     }
 }
+
+      html { height: 100% }
+      body { height: 100%; margin: 0; padding: 0 }
+      #map_canvas { height: 100% }
+
