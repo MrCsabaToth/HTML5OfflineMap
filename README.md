@@ -1,6 +1,6 @@
 # [Off-line Google Maps concept]
 
-This concept is developed throughout a night at the Googel Campus in Mountain View.
+This concept is developed throughout a night at the Google Campus in Mountain View.
 On the night of Oct 20 to Oct 21, 2012. It was the Google DevFest West event.
 
 ## The original problem
@@ -17,9 +17,9 @@ On the night of Oct 20 to Oct 21, 2012. It was the Google DevFest West event.
 * When the scientist clicks "Offline mode" checkbox, the application displays the downloaded tiles
 
 ## Challenges
-* How to download data and from where?
-* Where and how to store them platform independently?
-* How to display them?
+* How to download map data and from where?
+* Where and how to store it platform independently?
+* How to display itT?
 
 ## This particular solution features
 * Based on [HTML5 Boilerplate](http://html5boilerplate.com)
@@ -30,15 +30,15 @@ On the night of Oct 20 to Oct 21, 2012. It was the Google DevFest West event.
 * jQuery UI Map is used as an extra layer over Google Maps v3 API
 * Google static maps used for downloading image tiles
 * Google Maps overlay layer for displaying the off-line tiles
-* There is underscore.js and bakcbone.js included too, but I didn't have time to implement real UI because of the quirks (ecplained later)
+* There is underscore.js and bakcbone.js included too, but I didn't have time to implement real UI because of the quirks (explained later)
 
 ## Implementation limitations, experiences
 * Tried Firefox and Chrome, and developed under 12.04 Ubuntu desktop OS
 * The IndexDB was very unreliable. Just try the IDBStore.js basic test! If the browser (both browsers) has good mood it works, if not then it doesn't...
-* The Google tatic map doesn't work reliably.
-** Chrome explicitely denies to download saying origin of reference error
+* The Google static map doesn't work reliably.
+** Chrome explicitly denies to download saying origin of reference error
 ** Firefox sometimes work, sometimes (mostly?) not
-** Only try to download the default 256x256px dimesnions otherwise 100% Google won't reply
+** Only try to download the default 256x256px dimenions otherwise 100% Google won't reply
 ** Different zoom levels, and the two scale levels (1 and 2) works also
 * Since the two basic functionality didn't work (took most of my night), I used a pre-staged situation at the demo:
 ** I manually downloaded tiles for a specific location
