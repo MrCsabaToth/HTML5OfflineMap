@@ -52,7 +52,7 @@ On the night of Oct 20 to Oct 21, 2012. It was the Google DevFest West event.
 * Get non-working parts to work
 ** For the static map we'd need to modify the AJAX request's Referer and Origin HTTP headers but at this level that doesn't seem to be possible
 ** For IndexDB some magic needed also
-* Storing tiles for more spots, displaying a list of those spots for the user and he/she can slect from them
+* Storing tiles for more spots, displaying a list of those spots for the user and he/she can select from them
 
 ## Implementation alternatives
 * Use File Storage for tile storage, but that's only available in Chrome/Chromium right now
